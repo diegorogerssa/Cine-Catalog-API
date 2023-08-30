@@ -1,0 +1,326 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "CineCatalogAPI: Pontuando as Telas com Avaliações",
+    "description": "Uma API cinematográfica refinada criada para simplificar o controle da sua seleção de filmes, oferecendo recursos abrangentes para cadastro e busca de filmes. De clássicos icônicos a criações modernas, nossa API oferece uma maneira eficaz de organizar e acessar informações vitais sobre cada filme em sua coleção.",
+    "termsOfService": "google.com",
+    "contact": {
+      "email": "rogersmhdg@gmail.com"
+    },
+    "version": "1.0.0",
+    "license": {
+      "name": "License Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/",
+      "description": "CineCatalogAPI"
+    }
+  ],
+  "paths": {
+    "/films": {
+      "post": {
+        "summary": "Adicionar Novo Filme:",
+        "description": "Esta rota possibilita a adição de um novo filme à sua coleção. Ao usar o método POST, você pode enviar os detalhes do novo filme, como título, diretor, gênero, ano de lançamento e etc. O servidor processará essas informações e criará um novo registro para o filme na sua coleção. Essa rota é perfeita para ampliar a seleção de filmes, fornecendo os dados necessários para cada filme que você deseja adicionar.",
+        "tags": [
+          "films"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/films"
+              },
+              "examples": {
+                "filme válido": {
+                  "value": {
+                    "movie_title": "Intrigue in Venice",
+                    "film_director": "Lucia Rossi",
+                    "year": 2020,
+                    "movie_duration": 115,
+                    "genre": "Mystery",
+                    "main_actors": ["Marco Bianchi", "Giulia Russo", "Alessandro Martino"],
+                    "rating": "PG",
+                    "synopsis": "Uncover a web of secrets and deception as a detective navigates the canals of Venice.",
+                    "review": 4.3 
+                  }
+                },
+                "filme inválido": {
+                  "value": {
+                    "film_director": "Lucia Rossi",
+                    "year": 2020,
+                    "movie_duration": 115,
+                    "genre": "Mystery",
+                    "main_actors": ["Marco Bianchi", "Giulia Russo", "Alessandro Martino"],
+                    "rating": "PG",
+                    "synopsis": "Uncover a web of secrets and deception as a detective navigates the canals of Venice.",
+                    "review": 4.3
+                  }
+                },
+                "filme com uma ou mais chaves inválidas": {
+                  "value": {
+                    "movie_title": 410,
+                    "film_director": "Lucia Rossi",
+                    "year": 2020,
+                    "movie_duration": 115,
+                    "genre": "Mystery",
+                    "main_actors": ["Marco Bianchi", "Giulia Russo", "Alessandro Martino"],
+                    "rating": "PG",
+                    "synopsis": "Uncover a web of secrets and deception as a detective navigates the canals of Venice.",
+                    "review": "4.3"
+                  }
+                },
+                "requisição sem body": {
+                  "value": {}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/films"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "BAD REQUEST"
+          }
+        }
+      },
+      "get": {
+        "summary": "Listagem de filmes",
+        "description": "Através desta rota, você pode obter uma lista completa de todos os filmes disponíveis em nossa coleção. Ao usar o método GET, você receberá informações detalhadas sobre cada filme, incluindo título, diretor, gênero, ano de lançamento e etc. Essa rota é uma maneira útil de visualizar todo o acervo de filmes em um único lugar.",
+        "tags": [
+          "films"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/films"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/films/{id}": {
+      "get": {
+        "summary": "Detalhes de um filme Específico",
+        "description": "Ao acessar esta rota com um ID de filme específico, você receberá informações detalhadas sobre esse filme em particular. Isso inclui detalhes como título, diretor, gênero, ano de lançamento e outras informações relevantes. Utilize essa rota quando precisar obter informações específicas de um filme da coleção.",
+        "tags": [
+          "films"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id do filme para a busca",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/films"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Atualização completa do filme",
+        "description": "Esta rota possibilita a atualização completa de um filme na coleção. Ao usar o método PUT, você pode fornecer todos os detalhes do filme, substituindo completamente os dados existentes. Utilize essa rota para atualizar informações como título, diretor, gênero, ano de lançamento e outros atributos do filme.",
+        "tags": [
+          "films"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id do filme para a busca",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/films"
+              },
+              "examples": {
+                "filme": {
+                  "value": {
+                    "movie_title": "titanic",
+                    "film_director": "James Cameron",
+                    "year": 1996,
+                    "movie_duration": 11304000,
+                    "genre": "romance/drama",
+                    "main_actors": ["Kate Wislet", "Leonardo DiCaprio", "Billy Zane", "Kath Bates"],
+                    "rating": "G",
+                    "synopsis": "Titanic é uma história de amor improvável entre Jack e Rose, que se conhecem a bordo do navio Titanic. Enfrentando barreiras sociais, seu romance floresce enquanto o navio enfrenta um trágico encontro com um iceberg, colocando à prova seu amor e coragem em meio à catástrofe.",
+                    "review": 7.9 
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "OK"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Atualização parcial do filme",
+        "description": "Utilize essa rota para fazer atualizações parciais em um filme na coleção. Em vez de substituir todos os dados, você pode enviar apenas as informações que deseja alterar. Isso é útil quando você quer modificar um ou mais atributos do filme sem afetar o restante das informações. Por exemplo, você pode atualizar apenas o diretor ou o gênero do filme, deixando os outros detalhes intactos. O método PATCH oferece flexibilidade ao realizar atualizações específicas em um filme existente.",
+        "tags": [
+          "films"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id do filme para a busca",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/films"
+              },
+              "examples": {
+                "alterar somente um campo": {
+                  "value": {
+                    "rating": "PG"
+                  }
+                },
+                "alterar dois ou mais campos": {
+                  "value": {
+                    "year": 1997,
+                    "main_actors": ["Kate Wislet", "Leonardo DiCaprio", "Billy Zane"],
+                    "rating": "NC-17"
+                  }
+                },
+                "não enviando body": {
+                  "value": {}
+                },
+                "enviando um body inválido": {
+                  "value": {
+                    "title": "A volta do titanic"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "BAD REQUEST"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Remover filme",
+        "description": "Ao utilizar esta rota com um ID de filme específico, você pode remover o filme correspondente da coleção. O método DELETE permite que você exclua permanentemente um filme do acervo. Essa rota é útil quando você deseja retirar um filme da coleção por qualquer motivo, seja por falta de relevância ou outras considerações. Certifique-se de fornecer o ID correto do filme que deseja remover, pois essa ação não pode ser desfeita e resultará na exclusão definitiva do filme da coleção.",
+        "tags": [
+          "films"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id do filme para a busca",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "BAD REQUEST"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "films": {
+        "type": "object",
+        "properties": {
+          "movie_title": {
+            "type": "string"
+          },
+          "film_director": {
+            "type": "string"
+          },
+          "year": {
+            "type": "number"
+          },
+          "movie_duration": {
+            "type": "number"
+          },
+          "genre": {
+            "type": "string"
+          },
+          "main_actors": {
+            "type": "array"
+          },
+          "rating": {
+            "type": "string"
+          },
+          "synopsis": {
+            "type": "string"
+          },
+          "review": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
+}
