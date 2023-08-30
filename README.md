@@ -7,9 +7,15 @@ Bem-vindo à documentação da CineCatalog-API, uma API cinematográfica criada 
 Antes de começar, certifique-se de que a API esteja sendo executada localmente. Para isso, siga as instruções abaixo:
 
 1. Clone este repositório para a sua máquina local.
-2. Instale as dependências usando o comando `npm install`.
-3. Execute a API localmente usando o comando `npm run dev`.
-4. Acesse a API em [http://localhost:3000](http://localhost:3000).
+2. Instale as dependências usando o comando:
+```
+npm install
+``` 
+3. Execute a API localmente usando o comando:
+```
+npm run dev
+``` 
+4. A API ficará disponivel na porta 3000.
 
 Agora você está pronto para explorar as funcionalidades da CineCatalog-API!
 
@@ -19,7 +25,10 @@ O Swagger é uma ferramenta que fornece uma interface interativa para explorar e
 
 1. Certifique-se de que a API esteja sendo executada localmente. Caso ainda não tenha feito isso, siga os passos mencionados anteriormente.
 2. Abra o seu navegador web.
-3. Digite o seguinte endereço na barra de endereços: [http://localhost:3000/api-docs](http://localhost:3000/api-docs).
+3. Digite o seguinte endereço na barra de endereços:
+```
+http://localhost:3000/api-docs
+``` 
 4. Pressione Enter para acessar a interface interativa do Swagger.
 
 ![img](images/swaggerUI.png)
@@ -32,51 +41,90 @@ Lembre-se de que a API deve estar rodando localmente para que você possa acessa
 
 Para cadastrar um novo filme em sua coleção, siga os passos abaixo:
 
-1. Abra o seu aplicativo ou ferramenta de API (por exemplo, Postman).
-2. Faça uma solicitação POST para a rota de cadastro de filmes (`http://localhost:3000/api/films`).
+1. Abra o seu aplicativo ou ferramenta de API (por exemplo, Insomnia).
+2. Faça uma solicitação POST para a rota de cadastro de filmes `http://localhost:3000/films`.
 3. Preencha os detalhes do filme, como título, diretor, gênero, ano de lançamento e outros atributos relevantes.
 4. Envie a solicitação.
+##### Exemplo de Requisição:
+```
+{
+  "movie_title": "Comedy Chaos",
+  "film_director": "Samuel Rodriguez",
+  "year": 2021,
+  "movie_duration": 90,
+  "genre": "Comedy",
+  "main_actors": ["Sophie Martinez", "Kevin Adams", "Liam Thompson"],
+  "rating": "PG-13",
+  "synopsis": "Get ready for side-splitting laughter as unexpected events lead to hilarious chaos.",
+  "review": 4.0
+}
+``` 
 
-![Cadastro de Filme](images/cadastro_filme.png)
 
 ### Consulta de Filmes
 
 Para consultar a lista de filmes disponíveis em sua coleção, siga os passos abaixo:
 
 1. Abra o seu aplicativo ou ferramenta de API.
-2. Faça uma solicitação GET para a rota de consulta de filmes (`http://localhost:3000/api/films`).
+2. Faça uma solicitação GET para a rota de consulta de filmes `http://localhost:3000/films`.
 3. Receba uma lista detalhada de todos os filmes na coleção.
 
-![Consulta de Filmes](images/consulta_filmes.png)
+### Consulta de Filmes por ID
+
+Para consultar um filme específico em sua coleção, siga os passos abaixo:
+
+1. Abra o seu aplicativo ou ferramenta de API.
+2. Faça uma solicitação GET para a rota de consulta de filmes `http://localhost:3000/films/id`.
+3. Receba uma lista detalhada de todos os filmes na coleção.
+
 
 ### Atualização de Filme
 
 Para atualizar as informações de um filme em sua coleção, siga os passos abaixo:
 
 1. Abra o seu aplicativo ou ferramenta de API.
-2. Faça uma solicitação PUT para a rota de atualização de filmes (`http://localhost:3000/api/films/:id`), onde `:id` é o ID do filme que você deseja atualizar.
+2. Faça uma solicitação PUT para a rota de atualização de filmes `http://localhost:3000/films/:id`, onde `:id` é o ID do filme que você deseja atualizar.
+3. Forneça todos os detalhes do filme que para atualiza-lo.
+4. Envie a solicitação.
+##### Exemplo de Requisição:
+```
+{
+  "movie_title": "Comedy Chaos",
+  "film_director": "Samuel Rodriguez",
+  "year": 2021,
+  "movie_duration": 91,
+  "genre": "Comedy",
+  "main_actors": ["Sophie Martinez", "Kevin Adams", "Liam Thompson"],
+  "rating": "PG-13",
+  "synopsis": "Get ready for side-splitting laughter as unexpected events lead to hilarious chaos.",
+  "review": 5.0
+}
+``` 
+
+### Atualização parcial de Filme
+
+Para atualizar todas informações de um filme ou somente partes dela siga os passos abaixo:
+
+1. Abra o seu aplicativo ou ferramenta de API.
+2. Faça uma solicitação PUT para a rota de atualização de filmes `http://localhost:3000/films/:id`, onde `:id` é o ID do filme que você deseja atualizar.
 3. Forneça todos os detalhes do filme que deseja atualizar.
 4. Envie a solicitação.
-
-![Atualização de Filme](images/atualizacao_filme.png)
+##### Exemplo de Requisição:
+```
+{
+  "review": 9.0
+}
+``` 
 
 ### Exclusão de Filme
 
 Para remover um filme de sua coleção, siga os passos abaixo:
 
 1. Abra o seu aplicativo ou ferramenta de API.
-2. Faça uma solicitação DELETE para a rota de exclusão de filmes (`http://localhost:3000/api/films/:id`), onde `:id` é o ID do filme que você deseja excluir.
+2. Faça uma solicitação DELETE para a rota de exclusão de filmes `http://localhost:3000/films/:id`, onde `:id` é o ID do filme que você deseja excluir.
 3. Confirme a ação.
 4. O filme será permanentemente excluído da coleção.
 
-![Exclusão de Filme](images/exclusao_filme.png)
-
-## Começando
-
-1. Clone este repositório para a sua máquina local.
-2. Instale as dependências usando o comando `npm install`.
-3. Execute a API localmente usando o comando `npm start`.
-4. Acesse a API em [http://localhost:3000](http://localhost:3000).
 
 ## Contribuição
 
@@ -84,8 +132,7 @@ Sinta-se à vontade para contribuir para este projeto abrindo problemas ou envia
 
 ## Contato
 
-Se tiver alguma dúvida ou precisar de ajuda, entre em contato conosco em [contato@screenscoreapi.com](mailto:contato@screenscoreapi.com).
+Se tiver alguma dúvida ou precisar de ajuda, entre em contato conosco em [rogersmhdg@gmail.com](mailto:rogersmhdg@gmail.com).
 
 ---
 
-Certifique-se de que as rotas, endpoints, detalhes e imagens correspondam à sua API e ao seu projeto. Personalize o README de acordo com suas necessidades.
