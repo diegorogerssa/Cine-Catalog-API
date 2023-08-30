@@ -9,7 +9,6 @@ const validId = (req, res, next) => {
     id: Number(id),
   });
   if (!validIdfilm.success) {
-		console.log(validIdfilm.error);
     return res.status(400).json({message: `${validIdfilm.error.issues[0].path}:  ${validIdfilm.error.errors[0].message}`});
   }
   

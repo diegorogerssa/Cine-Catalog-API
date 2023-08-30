@@ -29,19 +29,19 @@ const updadteFilm = (req, res) => {
   if (movie_duration) {
     findId.movie_duration = movie_duration;
   }
-  if (movie_title) {
+  if (genre) {
     findId.genre = genre;
   }
-  if (film_director) {
+  if (main_actors) {
     findId.main_actors = main_actors;
   }
-  if (year) {
+  if (rating) {
     findId.rating = rating;
   }
-  if (movie_duration) {
+  if (synopsis) {
     findId.synopsis = synopsis;
   }
-  if (movie_duration) {
+  if (review) {
     findId.review = review;
   }
   films.splice(idIndex, 1, findId);
