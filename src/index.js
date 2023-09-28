@@ -7,7 +7,7 @@ const app = express();
 
 
 const corsOptions = {
-  origin: 'https://cine-catalog-api-q9db-git-main-diego-rogers-projects.vercel.app/api-docs/', 
+  origin: '*', 
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', 
   credentials: false, 
 };
