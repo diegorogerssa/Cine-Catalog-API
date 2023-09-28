@@ -15,7 +15,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:3000/",
+      "url": "https://cine-catalog-api-q9db.vercel.app/",
       "description": "CineCatalogAPI"
     }
   ],
