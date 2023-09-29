@@ -15,7 +15,7 @@
   },
   "servers": [
     {
-      "url": "35.171.23.88:3000",
+      "url": "http://35.171.23.88:3000",
       "description": "CineCatalogAPI"
     }
   ],
