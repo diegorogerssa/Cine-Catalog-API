@@ -15,7 +15,7 @@
   },
   "servers": [
     {
-      "url": "https://cine-catalog-api-q9db.vercel.app/",
+      "url": "35.171.23.88:3000",
       "description": "CineCatalogAPI"
     }
   ],
