@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.0",
+  "openapi": "4.0.0",
   "info": {
     "title": "CineCatalogAPI: Pontuando as Telas com Avaliações",
     "description": "Uma API cinematográfica refinada criada para simplificar o controle da sua seleção de filmes, oferecendo recursos abrangentes para cadastro e busca de filmes. De clássicos icônicos a criações modernas, nossa API oferece uma maneira eficaz de organizar e acessar informações vitais sobre cada filme em sua coleção.",
