@@ -15,4 +15,5 @@ app.use(express.json());
 app.use(cors(corsOptions));
 app.use(route)
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs))
+
 module.exports = app;
